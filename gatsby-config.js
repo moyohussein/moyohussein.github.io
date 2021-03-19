@@ -4,12 +4,15 @@ module.exports = {
     title: "Hussein Abdulqohar",
     description: "This is Hussein Abdulqohars' personal website",
     author: "Hussein Abdulqohar",
+    siteUrl: "https://husseinabdulqohar.gtsb.io/"
   },
   plugins: [
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-gatsby-cloud`,
+        `gatsby-plugin-robots-txt`,
+        `gatsby-plugin-webpack-bundle-analyser-v2`,
         {
           resolve: "gatsby-plugin-manifest",
           options: {
