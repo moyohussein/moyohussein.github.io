@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://husseinabdulqohar.gtsb.io/sitemap.xml
+Host: https://husseinabdulqohar.gtsb.io
