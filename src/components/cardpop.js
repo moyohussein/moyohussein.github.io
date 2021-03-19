@@ -68,7 +68,7 @@ const CardPop = ({ handleClose , images1, images2, images3, images4, images5, im
                 custom={direction} 
                 style={{boxShadow: `var(--form-shadow)`}}
             >   
-                <Box display={{xs: `none`, md: `block` }}>
+                <Box display={{xs: `none`, sm: `block` }}>
                 <Box      
                         display="flex" 
                         position="absolute"
@@ -225,7 +225,7 @@ const CardPop = ({ handleClose , images1, images2, images3, images4, images5, im
                             })}
                         </Box>
                     </Box>
-                    <Box display={{xs: `none`, md: `block`}} pt={10}>
+                    <Box display={{xs: `none`, sm: `block`}} pt={10}>
                         <motion.img
                             style=
                             {{
