@@ -32,7 +32,7 @@ const Footer = () => {
 
     return (
     <>  
-        <Box display={{xs: `block`, md: `none`}}>
+        <Box display={{xs: `block`, sm: `none`}}>
             <div
             style={{
                 width: `100%`,
@@ -50,7 +50,7 @@ const Footer = () => {
                 </Typography>
             </div>
         </Box>
-        <Box display={{xs: `none`, md: `block`}}>
+        <Box display={{xs: `none`, sm: `block`}}>
             <div
             style={{
                 width: `100%`,

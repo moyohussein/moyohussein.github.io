@@ -46,9 +46,6 @@ const variants = {
       delay: duration,
       when: 'beforeChildren',
     },
-    exit: {
-      opacity: 0,
-    }
   },
 };
 
@@ -111,7 +108,6 @@ const Layout = ({ children, location }) => {
               variants={variants}
               initial="initial"
               animate="enter"
-              exit="exit"
               location={location}
               key={location.pathname}
             >

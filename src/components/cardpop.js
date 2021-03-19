@@ -113,7 +113,7 @@ const CardPop = ({ handleClose , images1, images2, images3, images4, images5, im
                         </Button>
                     </Box>
                 </Box>
-                <Box display={{xs: `block`, md: `none`}}>
+                <Box display={{xs: `block`, sm: `none`}}>
                 <Box      
                         display="flex" 
                         position="absolute"
@@ -167,7 +167,7 @@ const CardPop = ({ handleClose , images1, images2, images3, images4, images5, im
                         overflow: `hidden`,
                     }}
                 >
-                    <Box display={{xs: `block`, md: `none`}} pt={5}>
+                    <Box display={{xs: `block`, sm: `none`}} pt={5}>
                         <motion.img
                             style=
                             {{
