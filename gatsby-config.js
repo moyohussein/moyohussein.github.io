@@ -7,6 +7,7 @@ module.exports = {
     siteUrl: "https://husseinabdulqohar.gtsb.io/"
   },
   plugins: [
+        `gatsby-plugin-sitemap`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         `gatsby-plugin-react-helmet`,
