@@ -67,7 +67,10 @@ const PopoverPosition = withStyles((theme) => ({
     alignContent: `center`,
     overflowY: `hidden`,
     backgroundColor: `transparent`,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.only('sm')]: {
+      width: `78vw`,
+    },
+    [theme.breakpoints.down('xs')]: {
       width: 350,
       maxHeight: `100vh`,
     },
