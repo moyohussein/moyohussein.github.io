@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         position: `relative`,
         overflow: `hidden`,
         [theme.breakpoints.down('xs')]: {
-            width: 360,
+            width: 355,
         },
     },
     cardHeader: {

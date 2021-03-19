@@ -65,16 +65,17 @@ const PopoverPosition = withStyles((theme) => ({
     flexDirection: `column`,
     justifyContent: `center`,
     alignContent: `center`,
+    overflowY: `hidden`,
     backgroundColor: `transparent`,
     [theme.breakpoints.down('sm')]: {
-      width: `90%`,
+      width: 350,
       maxHeight: `100vh`,
     },
   },
 }))(Popover);
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
       display: `flex`,
       justifyContent: `center`,
@@ -87,6 +88,12 @@ const useStyles = makeStyles({
     list: {
       position: `relative`,
       margin: 20,
+    },
+    box: {
+      maxWidth: `70%`,
+      [theme.breakpoints.down('sm')]: {
+        maxWidth: `100%`
+      },
     },
     link: {
       color: `var(--hr)`,
@@ -101,7 +108,7 @@ const useStyles = makeStyles({
       "50%": { opacity: 0.0, },
       "100%": { opacity: 1.0, },
     }
-});
+}));
 
 const Portfolio = () => {
   const classes = useStyles();
@@ -232,7 +239,7 @@ const projects = data.allProjectJson.edges;
     <Box 
         display='flex' 
         justifyContent='center' 
-        maxWidth= {matchesMobileScreen ? "85%" : "70%"} 
+        className={classes.box} 
         flexWrap="wrap" 
         m="0 auto"
     >

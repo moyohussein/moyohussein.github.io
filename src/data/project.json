@@ -18,9 +18,9 @@
     {
         "id": 3,
         "title": "Portfolio Website",
-        "repo": "https://github.com/moyohussein/portfolio",
+        "repo": "https://github.com/moyohussein/moyohussein",
         "info": ["GraphQL", "UI/UX", "Web App", "Gatsby JS", "Animation"],
-        "webUrl": "https://moyohussein.github.io/todo_app/",
+        "webUrl": "https://moyohussein.github.io/",
         "images": ["../images/image13.png", "../images/image14.png", "../images/image15.png", "../images/image16.png", "../images/image17.png", "../images/image18.png"]
     },
     {

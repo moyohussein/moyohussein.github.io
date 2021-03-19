@@ -9,6 +9,8 @@ const AwesomeButton = ({ webUrl }) => {
                 <ButtonBase style={{borderRadius: 5}} ariaLabel="button" >
                     <a 
                         href={webUrl}
+                        target="_blank"
+                        rel="noreferrer"
                         className="awesomeButton"
                     >
                         <GoLinkExternal style=

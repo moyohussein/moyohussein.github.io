@@ -16,7 +16,10 @@ import PageNotFound from "../pages/404";
 
 let theme = createMuiTheme({
   typography: {
-    fontFamily: `Alata`
+    fontFamily: `Alata`,
+    h1: {
+      fontFamily: `Italianno`,
+    },
   },
   breakpoints: {
     values: {
@@ -43,22 +46,32 @@ const variants = {
       delay: duration,
       when: 'beforeChildren',
     },
+    exit: {
+      opacity: 0,
+    }
   },
 };
 
 
 const useStyles = makeStyles((theme) => ({
+  origin:{
+    display: `flex`,
+    flexDirection: `column`,
+    minHeight: `100vh`,
+  },
   root: {
     margin: `0 auto`,
     maxWidth: `85%`,
     padding: `45px 10px`,
     position: 'relative',
     height: `auto`,
+    flexGrow: 1,
     display: `flex`,
     justifyContent: `center`,
     alignContent: `center`,
     [theme.breakpoints.down('xs')]: {
       maxWidth: `95%`,
+      padding: `45px 0px`,
     },
   },
 }));
@@ -80,24 +93,25 @@ const Layout = ({ children, location }) => {
   return (
     <>
     {
-    location.pathname !== '/' && location.pathname !== '/about/'  && location.pathname !== '/portfolio/' && location.pathname !== '/codelab/'
+    location.pathname !== '/' && location.pathname !== '/about/'  && location.pathname !== '/portfolio/' && location.pathname !== '/codelab/' 
     ? (<PageNotFound />) :
       (
-        <>
+        <div className={classes.origin}>
         <ThemeProvider theme={theme}>
           <BackGround />
-          <Header siteTitle={data.site.siteMetadata?.title || `Title`}/>
+          <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
           <NavBar />
           <Hidden xsDown>
             <SwitchBtn />
             <SocialIcons />
           </Hidden>
           <div className={classes.root}>
-            <AnimatePresence>
+            <AnimatePresence exitBeforeEnter>
             <motion.main
               variants={variants}
               initial="initial"
               animate="enter"
+              exit="exit"
               location={location}
               key={location.pathname}
             >
@@ -107,7 +121,7 @@ const Layout = ({ children, location }) => {
           </div>
           <Footer />
         </ThemeProvider>
-        </>
+        </div>
       )
     } 
      
@@ -116,7 +130,13 @@ const Layout = ({ children, location }) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  site: PropTypes.shape({
+    siteMetadata: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+    }).isRequired,
+}),
+children: PropTypes.node.isRequired,
+location: PropTypes.object.isRequired,
 }
 
 export default Layout

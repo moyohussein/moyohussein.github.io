@@ -10,19 +10,19 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      fontSize: `3rem`,
+      fontSize: `calc(3rem + 0.75vw)`,
       fontWeight: `bold`,
       width: `100%`,
       textAlign: `center`,
       [theme.breakpoints.only('sm')]: {
-        fontSize: `35px`,
+        fontSize: 'calc(27px + 2vw)',
       },
       [theme.breakpoints.down('xs')]: {
-        fontSize: `25px`,
+        fontSize: `calc(19.5px + 1vw)`,
       },
     },
     paragraph: {
-      marginTop: 25,
+      marginTop: theme.spacing(5),
     },
 }));
 
@@ -37,7 +37,7 @@ const IndexPage = () => {
       display="flex"
       justifyContent="center"
       alignContent="center"
-      height="calc(100vh - 200px)"
+      height="100%"
       width="100%"
       overflow="hidden"
       flexDirection="column"

@@ -41,6 +41,7 @@ const Canvas = ({ width, height }) => {
     return (  
         <canvas 
             ref={canvasRef} 
+            id="canvas"
             height={height} 
             width={width} 
             style={{position: `fixed`}} 

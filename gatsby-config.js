@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/",
   siteMetadata: {
     title: "Hussein Abdulqohar",
     description: "This is Hussein Abdulqohars' personal website",
@@ -8,6 +9,7 @@ module.exports = {
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         `gatsby-plugin-react-helmet`,
+        `gatsby-plugin-gatsby-cloud`,
         {
           resolve: "gatsby-plugin-manifest",
           options: {

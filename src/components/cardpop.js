@@ -6,10 +6,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
 import { Circles } from "../components/card";
+import CancelIcon from '@material-ui/icons/Cancel';
 import Box from "@material-ui/core/Box";
 import FiberManualRecordSharpIcon from '@material-ui/icons/FiberManualRecordSharp';
 import Typography from "@material-ui/core/Typography";
-import { useMediaQuery, useTheme } from "@material-ui/core";
 
 const variants = {
   enter: (direction) => {
@@ -38,8 +38,6 @@ const swipePower = (offset, velocity) => {
 };
 
 const CardPop = ({ handleClose , images1, images2, images3, images4, images5, images6, title }) => {
-    const theme = useTheme();
-    const matchesMobileScreen = useMediaQuery(theme.breakpoints.down('xs'));
 
     const imageSrcA = images1.src
     const imageSrcB = images2.src
@@ -47,9 +45,11 @@ const CardPop = ({ handleClose , images1, images2, images3, images4, images5, im
     const imageSrcD = images4.src
     const imageSrcE = images5.src
     const imageSrcF = images6.src
-    const images = !matchesMobileScreen ? [imageSrcA, imageSrcB, imageSrcC ]: [imageSrcD, imageSrcE, imageSrcF];
+    const desktopImages = [imageSrcA, imageSrcB, imageSrcC ];
+    const mobileImages = [imageSrcD, imageSrcE, imageSrcF];
     const [[page, direction], setPage] = useState([0, 0]);
-    const imageIndex = wrap(0, images.length, page);
+    const mobileImageIndex = wrap(0, mobileImages.length, page);
+    const desktopImageIndex = wrap(0, desktopImages.length, page);
     const paginate = (newDirection) => {
         setPage([page + newDirection, newDirection]);
     };
@@ -67,8 +67,9 @@ const CardPop = ({ handleClose , images1, images2, images3, images4, images5, im
                 initial={false} 
                 custom={direction} 
                 style={{boxShadow: `var(--form-shadow)`}}
-            >
-            <Box 
+            >   
+                <Box display={{xs: `none`, md: `block` }}>
+                <Box      
                         display="flex" 
                         position="absolute"
                         top={0}
@@ -78,6 +79,7 @@ const CardPop = ({ handleClose , images1, images2, images3, images4, images5, im
                         alignContent="center"
                         bgcolor="var(--cards)"
                         zIndex={3}
+                        fontSize={18}
                     >
                         <Circles />
                         <Typography 
@@ -87,7 +89,7 @@ const CardPop = ({ handleClose , images1, images2, images3, images4, images5, im
                                 lineHeight: 2, 
                                 fontFamily: `Alata`, 
                                 textTransform: `uppercase`, 
-                                fontSize: 18,
+                                fontSize: 'inherit',
                                 color: `var(--color)`,
                             }}
                         >
@@ -110,6 +112,49 @@ const CardPop = ({ handleClose , images1, images2, images3, images4, images5, im
                             <CloseIcon fontSize="small" />
                         </Button>
                     </Box>
+                </Box>
+                <Box display={{xs: `block`, md: `none`}}>
+                <Box      
+                        display="flex" 
+                        position="absolute"
+                        top={0}
+                        p={1} 
+                        fontSize={12}
+                        width="100%" 
+                        justifyContent="center" 
+                        alignContent="center"
+                        bgcolor="var(--cards)"
+                        zIndex={3}
+                    >
+                        <Circles />
+                        <Typography 
+                            variant="caption" 
+                            style=
+                            {{
+                                lineHeight: 1.45, 
+                                fontFamily: `Alata`, 
+                                textTransform: `uppercase`, 
+                                fontSize: 'inherit',
+                                color: `var(--color)`,
+                            }}
+                        >
+                            {title}
+                        </Typography>
+                         
+                        <Button style=
+                        {{
+                            position: `absolute`, 
+                            right: -10,
+                            top: 0,  
+                            alignSelf: `center`,
+                            color: `var(--color)`,
+                        }} 
+                            onClick={handleClose}
+                        >
+                            <CancelIcon fontSize="small" />
+                        </Button>
+                    </Box>
+                </Box>
                 <div style=
                     {{
                         width: `100%`,
@@ -120,60 +165,123 @@ const CardPop = ({ handleClose , images1, images2, images3, images4, images5, im
                         justifyContent: `center`,
                         alignItems: `center`,
                         overflow: `hidden`,
-                        paddingTop: 67,
                     }}
                 >
-                    <motion.img
-                        style=
-                        {{
-                            maxWidth: `100%`,
-                            maxHeight: `100%`,
-                            height: matchesMobileScreen && `60vh`,
-                            objectFit: `contain`,
-                            borderRadius: 10,
-                        }}
-                        key={page}
-                        src={images[imageIndex]}
-                        custom={direction}
-                        variants={variants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        transition={{
-                            x: { type: "spring", stiffness: 300, damping: 30 },
-                            opacity: { duration: 0.2 }
-                        }}
-                        drag="x"
-                        dragConstraints={{ left: 0, right: 0 }}
-                        dragElastic={1}
-                        onDragEnd={onDragEnd}
-                    />
-                    <Box 
-                        display="flex" 
-                        alignItems="center"
-                        justifyContent="center" 
-                        position="absolute" 
-                        zIndex={1}
-                        bottom={10}
-                        p={0.2}
-                        bgcolor="rgba(0, 0, 0, 0.35)"
-                        borderRadius={10}
-                    >
-                        {images.map((image, i) => {
-                            return (
-                                <FiberManualRecordSharpIcon 
-                                key={image + i} 
-                                style=
-                                {{
-                                    fontSize: 12, 
-                                    margin: 1, 
-                                    padding: 1, 
-                                    borderRadius: imageIndex ===  i ? `50%` : 0, 
-                                    color: imageIndex === i ? `rgba(255, 255, 255, 0.98)` : `rgba(255, 255, 255, 0.25)`, 
-                                }} 
-                                />
-                            )
-                        })}
+                    <Box display={{xs: `block`, md: `none`}} pt={5}>
+                        <motion.img
+                            style=
+                            {{
+                                maxWidth: `100%`,
+                                maxHeight: `100%`,
+                                height: `60vh`,
+                                objectFit: `contain`,
+                                borderRadius: 10,
+                            }}
+                            key={page}
+                            src={mobileImages[mobileImageIndex]}
+                            custom={direction}
+                            variants={variants}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            transition={{
+                                x: { type: "spring", stiffness: 300, damping: 30 },
+                                opacity: { duration: 0.2 }
+                            }}
+                            drag="x"
+                            dragConstraints={{ left: 0, right: 0 }}
+                            dragElastic={1}
+                            onDragEnd={onDragEnd}
+                        />
+                        <Box 
+                            display="flex" 
+                            alignItems="center"
+                            justifyContent="center" 
+                            position="absolute" 
+                            zIndex={1}
+                            bottom={10}
+                            width={50}
+                            left= {0}
+                            right={0}
+                            margin="auto"
+                            p={0.2}
+                            bgcolor="rgba(0, 0, 0, 0.35)"
+                            borderRadius={10}
+                        >
+                            {mobileImages.map((image, i) => {
+                                return (
+                                    <FiberManualRecordSharpIcon 
+                                    key={image + i} 
+                                    style=
+                                    {{
+                                        fontSize: 12, 
+                                        margin: 1, 
+                                        padding: 1, 
+                                        borderRadius: mobileImageIndex ===  i ? `50%` : 0, 
+                                        color: mobileImageIndex === i ? `rgba(255, 255, 255, 0.98)` : `rgba(255, 255, 255, 0.25)`, 
+                                    }} 
+                                    />
+                                )
+                            })}
+                        </Box>
+                    </Box>
+                    <Box display={{xs: `none`, md: `block`}} pt={10}>
+                        <motion.img
+                            style=
+                            {{
+                                maxWidth: `100%`,
+                                maxHeight: `100%`,
+                                objectFit: `contain`,
+                                borderRadius: 10,
+                            }}
+                            key={page}
+                            src={desktopImages[desktopImageIndex]}
+                            custom={direction}
+                            variants={variants}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            transition={{
+                                x: { type: "spring", stiffness: 300, damping: 30 },
+                                opacity: { duration: 0.2 }
+                            }}
+                            drag="x"
+                            dragConstraints={{ left: 0, right: 0 }}
+                            dragElastic={1}
+                            onDragEnd={onDragEnd}
+                        />
+                        <Box 
+                            display="flex" 
+                            alignItems="center"
+                            justifyContent="center" 
+                            position="absolute" 
+                            textAlign="center"
+                            width={50}
+                            left= {0}
+                            right={0}
+                            margin="auto"
+                            zIndex={1}
+                            bottom={10}
+                            p={0.2}
+                            bgcolor="rgba(0, 0, 0, 0.35)"
+                            borderRadius={10}
+                        >
+                            {desktopImages.map((image, i) => {
+                                return (
+                                    <FiberManualRecordSharpIcon 
+                                    key={image + i} 
+                                    style=
+                                    {{
+                                        fontSize: 12, 
+                                        margin: 1, 
+                                        padding: 1, 
+                                        borderRadius: desktopImageIndex ===  i ? `50%` : 0, 
+                                        color: desktopImageIndex === i ? `rgba(255, 255, 255, 0.98)` : `rgba(255, 255, 255, 0.25)`, 
+                                    }} 
+                                    />
+                                )
+                            })}
+                        </Box>
                     </Box>
                     <Button style=
                     {{
