@@ -1,5 +1,6 @@
 import React from "react";
 import SEO from "../components/seo";
+import { Helmet } from "react-helmet";
 import Typography from '@material-ui/core/Typography';
 import Box from "@material-ui/core/Box";
 import Typist from 'react-typist';
@@ -31,6 +32,9 @@ const IndexPage = () => {
 
   return (
     <>
+    <Helmet>
+      <meta name="google-site-verification" content="3jg1uOWLqtilsG9JkkqkhvPZtkfNp3Ui-7CPNarxY84" />
+    </Helmet>
     <SEO title="Home" />
     <Box
       textAlign="center"
