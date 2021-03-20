@@ -4,7 +4,8 @@ module.exports = {
     title: "Hussein Abdulqohar",
     description: "This is Hussein Abdulqohars' personal website",
     author: "Hussein Abdulqohar",
-    siteUrl: "https://husseinabdulqohar.gtsb.io/"
+    siteUrl: "https://husseinabdulqohar.gtsb.io/",
+    keywords: "Hussein Abdulqohar, hussein, hussein's portfolio, hussein abdulqohar, hussein developer", 
   },
   plugins: [
         `gatsby-plugin-sitemap`,
@@ -14,6 +15,7 @@ module.exports = {
         `gatsby-plugin-gatsby-cloud`,
         `gatsby-plugin-robots-txt`,
         `gatsby-plugin-webpack-bundle-analyser-v2`,
+        `gatsby-plugin-preload-fonts`,
         {
           resolve: "gatsby-plugin-manifest",
           options: {
